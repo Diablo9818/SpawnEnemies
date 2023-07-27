@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2712694876552466988}
   - component: {fileID: 648701831}
   - component: {fileID: 648701832}
+  - component: {fileID: -7250571934592905881}
   m_Layer: 0
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -154,3 +155,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.375, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &-7250571934592905881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2712694876552466987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4addfa12f32cd464fa681fb1bc4a201c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

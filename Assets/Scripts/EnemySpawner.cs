@@ -5,11 +5,16 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private GameObject enemyPrefab;
+    [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private float _spawnInterval = 2f;
+    [SerializeField] private WaitForSeconds _spawnDelay;
 
     private int currentSpawnPointIndex = 0;
 
+    private void Awake()
+    {
+        _spawnDelay = new WaitForSeconds(_spawnInterval);
+    }
     private void Start()
     {
         StartCoroutine(SpawnEnemies());
@@ -19,24 +24,21 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            SpawnEnemy();
-            yield return new WaitForSeconds(_spawnInterval);
+            if (_spawnPoints.Length > 0)
+            {
+                SpawnEnemy();
+                yield return _spawnDelay;
+            }
+            else
+            {
+                Debug.LogWarning("No spawn points defined!");
+            }
         }
     }
 
     private void SpawnEnemy()
     {
-        if (_spawnPoints.Length > 0)
-        {
-            GameObject enemy = Instantiate(enemyPrefab, _spawnPoints[currentSpawnPointIndex].position, Quaternion.identity);
-
-            currentSpawnPointIndex = (currentSpawnPointIndex + 1) % _spawnPoints.Length;
-
-        }
-        else
-        {
-            Debug.LogWarning("No spawn points defined!");
-            return;
-        }
+        var enemy = Instantiate(enemyPrefab, _spawnPoints[currentSpawnPointIndex].position, Quaternion.identity);
+        currentSpawnPointIndex = (currentSpawnPointIndex + 1) % _spawnPoints.Length;
     }
 }
