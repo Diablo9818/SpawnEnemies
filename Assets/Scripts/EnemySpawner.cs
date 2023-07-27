@@ -22,17 +22,10 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        while (true)
+        while (_spawnPoints.Length > 0)
         {
-            if (_spawnPoints.Length > 0)
-            {
                 SpawnEnemy();
                 yield return _spawnDelay;
-            }
-            else
-            {
-                Debug.LogWarning("No spawn points defined!");
-            }
         }
     }
 
